@@ -1,53 +1,53 @@
-# Antigravity Memory Bank
+# Antigravity Memory Bank 🧠
 
-Sistem manajemen memori persisten dan pelacak progres tugas untuk Google Antigravity.
+A lightweight, persistent memory and context tracking system for **Google Antigravity**.
 
-Dirancang agar asisten AI dapat mempertahankan konteks profil, preferensi kerja, dan kelanjutan progres proyek lintas sesi tanpa membebani penggunaan token.
+Designed to maintain user identity, development preferences, and project progress across sessions without exhausting token context.
 
 ---
 
-## Instalasi Cepat (One-Liner)
+## Quick Install (One-Liner)
 
-Jalankan perintah berikut di terminal:
+Run the following command in your terminal:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/0xposa/antigravity-memory-bank/main/install.sh | bash
 ```
 
-Perintah di atas akan secara otomatis menyiapkan:
-* **`~/.gemini/config/MEMORY.md`**: Memori profil pengguna dan preferensi umum lintas proyek.
-* **`~/.gemini/config/GEMINI.md`**: Aturan global untuk prioritas pencarian web dan pemuatan memori otomatis.
-* **Skill `memory-bank`**: Skill bawaan untuk mengelola progres dan konteks tugas pada setiap proyek aktif.
+This single command automatically sets up:
+* **`~/.gemini/config/MEMORY.md`**: Global persistent memory for user profile, device specs, and workspace preferences.
+* **`~/.gemini/config/GEMINI.md`**: System rules enforcing live web search and unconditional memory loading.
+* **`memory-bank` Skill**: Built-in agent skill for managing project tasks, progress checklists, and active context.
 
 ---
 
-## Struktur Memori
+## Memory Architecture
 
-Sistem ini memisahkan konteks menjadi dua tingkat:
+The system uses a clean two-tier architecture:
 
-### 1. Tingkat Global (`~/.gemini/config/`)
-* **`MEMORY.md`**: Menyimpan identitas, spesifikasi perangkat, akun, dan preferensi kerja.
-* **`GEMINI.md`**: Mengatur perilaku asisten agar selalu memeriksa data terbaru di internet dan membaca memori sebelum merespons.
+### 1. Global Layer (`~/.gemini/config/`)
+* **`MEMORY.md`**: Stores developer identity, hardware/OS specifications, communication preferences, and persistent entities.
+* **`GEMINI.md`**: System-level operating rules (such as search-first policies and auto-memory synchronization).
 
-### 2. Tingkat Proyek (`.agents/context/`)
-Dibuat di dalam direktori proyek kerja Anda:
-* **`activeContext.md`**: Status fitur yang sedang dikerjakan saat ini, fokus tugas, dan langkah selanjutnya.
-* **`progress.md`**: Daftar periksa (*checklist*) fitur yang telah selesai dan yang belum dikerjakan.
-* **`systemPatterns.md`**: Standar arsitektur, pola kode, dan dependensi proyek.
-
----
-
-## Cara Penggunaan
-
-Setelah terpasang, Anda cukup memberikan instruksi kepada asisten seperti biasa:
-
-* *"Inisialisasi memori untuk proyek ini"* — Menyiapkan folder konteks proyek.
-* *"Simpan progres hari ini"* — Mencatat status pekerjaan dan langkah berikutnya.
-* *"Lanjutkan tugas kemarin"* — Membaca kembali progres terakhir tanpa perlu mengulang penjelasan.
-* *"Catat ini ke memori"* — Menyimpan preferensi atau informasi penting baru secara permanen.
+### 2. Project Layer (`.agents/context/`)
+Initialized locally inside each project workspace:
+* **`activeContext.md`**: Tracks current task focus, recent code changes, active blockers, and immediate next steps.
+* **`progress.md`**: Checklist of completed `[x]` versus upcoming `[ ]` deliverables.
+* **`systemPatterns.md`**: Technical stack definitions, coding standards, and architectural decisions.
 
 ---
 
-## Lisensi
+## Usage
 
-MIT License
+Once installed, interact with your AI assistant using everyday prompts:
+
+* *"Initialize memory for this project"* — Generates the `.agents/context/` workspace structure.
+* *"Save today's progress"* — Updates the active context and task checklist before finishing a session.
+* *"Resume where we left off"* — Seamlessly picks up work from the last recorded state.
+* *"Remember this preference"* — Stores new user guidelines directly into global memory.
+
+---
+
+## License
+
+[MIT](LICENSE)
